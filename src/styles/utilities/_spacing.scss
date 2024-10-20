@@ -1,7 +1,11 @@
 @use "../abstracts" as *;
 
-.section {
-  padding-block: $section-padding-block;
+.card-padding {
+  padding: $size-6;
+
+  @include mq(medium) {
+    padding: $size-6 $size-6 $size-8;
+  }
 }
 
 .mx-auto {

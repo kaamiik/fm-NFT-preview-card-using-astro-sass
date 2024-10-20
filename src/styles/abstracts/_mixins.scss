@@ -33,3 +33,18 @@
   font-weight: $heading-font-weight;
   line-height: $heading-line-height;
 }
+
+@mixin flex(
+  $gap,
+  $direction: row,
+  $justify: flex-start,
+  $align: stretch,
+  $wrap: nowrap
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+  flex-wrap: $wrap;
+}

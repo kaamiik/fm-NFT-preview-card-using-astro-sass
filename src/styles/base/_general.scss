@@ -7,12 +7,32 @@ body {
   color: $body-text-color;
   background-color: $body-background-color;
   line-height: $body-line-height;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-block-start: 3.875rem;
+  margin-block-end: 2.75rem;
 }
 
 a {
   color: $link-color;
+  transition: 275ms ease;
 }
 
 a:is(:hover, :focus) {
   color: $link-color-hover;
+}
+
+a:focus {
+  border-radius: 4px;
+  outline: 2px solid $color-neutral-100;
+  outline-offset: 2px;
 }
