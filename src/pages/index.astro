@@ -1,29 +1,141 @@
 ---
-import SiteFooter from "../components/SiteFooter.astro";
-import SiteHeader from "../components/SiteHeader.astro";
 import Layout from "../layouts/BaseLayout.astro";
 ---
 
-<Layout title="Let's get to work">
-  <div class="container flow">
-    <h1 class="heading-1">Let's go</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laborum nulla
-      repellendus dolore quam quas? Nisi eaque veniam dolorem enim. Odit
-      incidunt nisi dignissimos facilis perspiciatis quidem accusantium at
-      consectetur minus.
-    </p>
-    <p>
-      Aperiam non nulla recusandae totam atque officia debitis tenetur, natus
-      veritatis eius perferendis libero earum voluptatum doloremque dignissimos,
-      ut laborum illum eligendi autem ipsa quaerat. Dolorum consequatur ipsum
-      harum ut.
-    </p>
-    <p>
-      Dolore molestias et esse neque beatae atque. Quas necessitatibus,
-      quibusdam est vero neque corporis doloremque consectetur error, dicta
-      animi commodi! Accusamus distinctio dolor eligendi sint repudiandae
-      sapiente adipisci nemo doloribus?
-    </p>
+<Layout title="Frontend Mentor | NFT preview card component">
+  <h1 class="visually-hidden">NFT Preview Card</h1>
+  <div
+    class="[ card ] [ container ] [ border-radius-2 bg-neutral-800 box-shadow-1 card-padding ]"
+  >
+    <button class="[ card__imgButton ][ margin-block-end-6 ]">
+      <span class="visually-hidden">VIEW THE IMAGE</span>
+      <img
+        class="[ card__img ][ border-radius-1 ]"
+        src="/assets/images/image-equilibrium.jpg"
+        alt=""
+      />
+    </button>
+    <div class="card__description">
+      <h2 class="heading-1"><a href="#">Equilibrium #3429</a></h2>
+      <p>Our Equilibrium collection promotes balance and calm.</p>
+    </div>
+    <div class="card__details">
+      <div class="card__price">
+        <img src="/assets/images/icon-ethereum.svg" alt="" />
+        <p class="caption-bold">0.041 ETH</p>
+      </div>
+      <div class="card__time">
+        <img src="/assets/images/icon-clock.svg" alt="" />
+        <p class="fs-400">3 days left</p>
+      </div>
+    </div>
+    <hr class="card__line" />
+    <div class="card__profile">
+      <img
+        class="card__avatar"
+        src="/public/assets/images/image-avatar.png"
+        alt="A person with a rainbow light reflecting on their face, gazing upwards thoughtfully."
+      />
+      <p class="fs-300">Creation of <a href="#">Jules Wyvern</a></p>
+    </div>
   </div>
 </Layout>
+
+<style lang="scss">
+  @use "../styles/abstracts/" as *;
+
+  .card {
+    &__imgButton {
+      position: relative;
+      outline: 2px solid transparent;
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: opacity 500ms ease;
+      }
+      &::before {
+        background-color: $color-primary-400;
+        border-radius: $border-radius-1;
+        opacity: 0;
+        z-index: 1;
+      }
+
+      &::after {
+        background-image: url("/assets/images/icon-view.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0;
+        z-index: 2;
+      }
+
+      &:is(:hover, :focus)::before {
+        opacity: 0.6;
+      }
+      &:is(:hover, :focus)::after {
+        opacity: 1;
+      }
+
+      &:focus {
+        border-radius: $border-radius-1;
+        outline-color: $color-neutral-100;
+        outline-offset: 4px;
+      }
+    }
+
+    &__img {
+      width: 278px;
+      height: 278px;
+      @include mq(medium) {
+        width: 302px;
+        height: 302px;
+      }
+    }
+
+    &__description {
+      @include flex($size-3, column);
+      @include mq(medium) {
+        gap: $size-4;
+      }
+    }
+
+    &__details {
+      @include flex(8px, $justify: space-between, $align: center, $wrap: wrap);
+      margin-block-start: $size-4;
+      @include mq(medium) {
+        margin-block-start: $size-6;
+      }
+    }
+
+    &__price {
+      @include flex(8px, $align: center);
+    }
+    &__time {
+      @include flex(8px, $align: center);
+    }
+
+    &__line {
+      color: $color-neutral-700;
+      margin-block: $size-4;
+      @include mq(medium) {
+        margin-block: $size-6 $size-4;
+      }
+    }
+
+    &__profile {
+      @include flex($size-4, $align: center, $wrap: wrap);
+    }
+
+    &__avatar {
+      aspect-ratio: 1;
+      border: 1px solid $color-neutral-100;
+      border-radius: 100vh;
+      width: 33px;
+    }
+  }
+</style>
