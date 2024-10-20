@@ -122,7 +122,8 @@ import Layout from "../layouts/BaseLayout.astro";
     }
 
     &__line {
-      border-color: $color-neutral-700;
+      border: 0;
+      border-top: 1px solid $color-neutral-700;
       margin-block: $size-4;
       @include mq(medium) {
         margin-block: $size-6 $size-4;
